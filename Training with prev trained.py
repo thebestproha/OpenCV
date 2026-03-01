@@ -1,6 +1,7 @@
 import torch
 torch.cuda.set_device(0)
 import cv2
+from pathlib import Path
 from ultralytics import YOLO
 import ultralytics
 def train_model():                          #checking if runnning on gpu
@@ -12,9 +13,11 @@ def train_model():                          #checking if runnning on gpu
     print(ultralytics.__version__) #prinitng version of yolo
     # Load YOLOv8 segmentation model (you can use 'yolov8s-seg.pt', 'yolov8m-seg.pt', etc.)
 
+    base_dir = Path(__file__).resolve().parent
+
     #model = YOLO("yolov8s-seg.yaml")
-    model = YOLO(rf"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch0p7\weights\best.pt")
-    image_path = rf"D:\learn\Dataset for animals\data.yaml"
+    model = YOLO(str(base_dir / "runs" / "segment" / "train_yaml_epoch1000_batch0p7" / "weights" / "best.pt"))
+    image_path = str(base_dir / "datasets" / "Dataset for animals" / "data.yaml")
     results = model.train(data=image_path, epochs=1000, batch=0.80,imgsz=640, device=0) #batch 80% ram usage , integer = no of images
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 import ultralytics
 import torch
 import cv2
+from pathlib import Path
 from ultralytics import YOLO
 
 #checking whether its running on gpu
@@ -16,7 +17,8 @@ print(ultralytics.__version__)
 model = YOLO("yolov8s-seg.pt")
 print(model.names)
 # Read the image
-image_path = rf"D:\learn\cmputer_Vision_opencv\Images\wolf.png"  # Change this to your image path
+base_dir = Path(__file__).resolve().parent
+image_path = str(base_dir / "Images" / "wolf.png")  # Change this to your image path
 image = cv2.imread(image_path)
 #model.predict(image,show=True,conf=0.70,classes=[2])   , class for only cars
 model.predict(image,show=True,conf=0.10)   #config for - will show only if 7- percentage is sure

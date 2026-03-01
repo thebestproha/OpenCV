@@ -1,11 +1,13 @@
 import cv2
 import os
 import subprocess
+from pathlib import Path
 from ultralytics import YOLO
 import torch
 
 # ✅ Input: single video path (original)
-video_path = r"D:\learn\cmputer_Vision_opencv\videos\Wonderful Wildlife Encounter when Rhino and Zebra share a waterhole at Kruger National Park (online-video-cutter.com).mp4"
+base_dir = Path(__file__).resolve().parent
+video_path = str(base_dir / "videos" / "Wonderful Wildlife Encounter when Rhino and Zebra share a waterhole at Kruger National Park (online-video-cutter.com).mp4")
 
 # ✅ Check for GPU
 if torch.cuda.is_available():
@@ -14,7 +16,7 @@ else:
     print("⚠️ Running on CPU")
 
 # ✅ Load YOLO model
-model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch0p7\weights\best.pt") #Working
+model = YOLO(str(base_dir / "runs" / "segment" / "train_yaml_epoch1000_batch0p7" / "weights" / "best.pt")) #Working
   # Change to your .pt model if needed
 print("Loaded model:", model.names)
 

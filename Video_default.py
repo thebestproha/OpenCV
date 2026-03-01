@@ -1,11 +1,13 @@
 import cv2
 import os
 import subprocess
+from pathlib import Path
 from ultralytics import YOLO
 import torch
 
 # ✅ Input: single video path (original)
-video_path = r"D:\learn\cmputer_Vision_opencv\videos\When My City's Traffic Lights Turn Off __ ViralHog.mp4"
+base_dir = Path(__file__).resolve().parent
+video_path = str(base_dir / "videos" / "When My City's Traffic Lights Turn Off __ ViralHog.mp4")
 
 # ✅ Check for GPU
 if torch.cuda.is_available():

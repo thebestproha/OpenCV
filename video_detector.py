@@ -1,4 +1,4 @@
-'''
+r'''
 import ultralytics
 import torch
 import cv2
@@ -48,6 +48,7 @@ import ultralytics
 import torch
 import cv2
 import time
+from pathlib import Path
 from ultralytics import YOLO
 
 # Check for GPU
@@ -59,20 +60,22 @@ else:
 # Print YOLO version
 print(ultralytics.__version__)
 
+base_dir = Path(__file__).resolve().parent
+
 # Load YOLOv8 segmentation model (custom trained)
-#model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_final_yaml_epoch1000_batch0p7_v3\weights\best.pt")
-# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch16\weights\best.pt")
-# model = YOLO(r"D:\learn\cmputer_Vision_opencv\best.pt")
-model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch0p7\weights\best.pt") #Working
-# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch10_failed\weights\custom_best.pt") #will not work 
-# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_from_train_yaml_epoch1000_batch0p7\weights\best.pt")
-# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_pretrained_pt_epoch10\weights\best.pt")
+#model = YOLO(str(base_dir / "runs" / "segment" / "train_final_yaml_epoch1000_batch0p7_v3" / "weights" / "best.pt"))
+# model = YOLO(str(base_dir / "runs" / "segment" / "train_yaml_epoch1000_batch16" / "weights" / "best.pt"))
+# model = YOLO(str(base_dir / "best.pt"))
+model = YOLO(str(base_dir / "runs" / "segment" / "train_yaml_epoch1000_batch0p7" / "weights" / "best.pt")) #Working
+# model = YOLO(str(base_dir / "runs" / "segment" / "train_yaml_epoch10_failed" / "weights" / "custom_best.pt")) #will not work 
+# model = YOLO(str(base_dir / "runs" / "segment" / "train_from_train_yaml_epoch1000_batch0p7" / "weights" / "best.pt"))
+# model = YOLO(str(base_dir / "runs" / "segment" / "train_pretrained_pt_epoch10" / "weights" / "best.pt"))
 
 
 print(model.names)
 
 # Open video
-video_path = r"D:\learn\cmputer_Vision_opencv\videos\Yellowstone Wolves...an unforgettable encounter....mp4"
+video_path = str(base_dir / "videos" / "Yellowstone Wolves...an unforgettable encounter....mp4")
 cap = cv2.VideoCapture(video_path)
 
 # Check if video opened

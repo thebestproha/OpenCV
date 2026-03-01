@@ -52,7 +52,7 @@ This project intentionally uses and compares two training/testing methods:
 - Dataset versions used in experiments: v2 and v3 (YOLOv8 export format)
 - License noted in source exports: CC BY 4.0
 
-This repo keeps one primary exported set (`Animal Project.v3i.yolov8`) and the raw class-wise image corpus. Older export content was heavily duplicated, so redundant copies were removed.
+This repo keeps exported dataset versions (`Animal Project.v3i.yolov8` and `Dataset for animals`) plus the raw class-wise image corpus.
 
 ## 2) Project structure (important folders)
 
@@ -76,6 +76,7 @@ This repository now includes code, trained runs, model weights, and datasets so 
 │  └─ train_final_yaml_epoch1000_batch0p7_v3/
 ├─ datasets/
 │  ├─ Animal Project.v3i.yolov8/
+│  ├─ Dataset for animals/
 │  └─ animals training images/
 ├─ Images/
 └─ videos/
