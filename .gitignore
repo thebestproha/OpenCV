@@ -8,11 +8,8 @@ __pycache__/
 venv/
 env/
 
-# Model artifacts and heavy outputs
-runs/
-*.pt
-Images/
-videos/
+# Keep project artifacts versioned
+# (runs/, videos/, images, and model weights are intentionally tracked)
 
 # OS/editor files
 .DS_Store
