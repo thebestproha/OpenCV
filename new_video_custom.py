@@ -14,7 +14,7 @@ else:
     print("⚠️ Running on CPU")
 
 # ✅ Load YOLO model
-model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train4_batch70%\weights\best.pt") #Working
+model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch0p7\weights\best.pt") #Working
   # Change to your .pt model if needed
 print("Loaded model:", model.names)
 

@@ -13,7 +13,7 @@ else:
 print(ultralytics.__version__)
 
 # Load YOLOv8 segmentation model (you can use 'yolov8s-seg.pt', 'yolov8m-seg.pt', etc.)
-model = YOLO(rf"D:\learn\cmputer_Vision_opencv\runs\segment\train3\weights\best.pt")
+model = YOLO(rf"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch16\weights\best.pt")
 print(model.names)
 # Read the image
 image_path = rf"D:\learn\cmputer_Vision_opencv\Images\tiger.jpg" # Change this to your image path

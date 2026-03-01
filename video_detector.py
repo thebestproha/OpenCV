@@ -14,7 +14,7 @@ else:
 print(ultralytics.__version__)
 
 # Load YOLOv8 segmentation model (custom trained)
-model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train3\weights\best.pt")
+model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch16\weights\best.pt")
 print(model.names)
 
 # Open the video file
@@ -60,13 +60,13 @@ else:
 print(ultralytics.__version__)
 
 # Load YOLOv8 segmentation model (custom trained)
-#model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\Final\weights\best.pt")
-# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train3\weights\best.pt")
+#model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_final_yaml_epoch1000_batch0p7_v3\weights\best.pt")
+# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch16\weights\best.pt")
 # model = YOLO(r"D:\learn\cmputer_Vision_opencv\best.pt")
-model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train4_batch70%\weights\best.pt") #Working
-# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train2_epochs=1000,dataset\weights\custom_best.pt") #will not work 
-# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train5_using_prev_train4\weights\best.pt")
-# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train\weights\best.pt")
+model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch0p7\weights\best.pt") #Working
+# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch10_failed\weights\custom_best.pt") #will not work 
+# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_from_train_yaml_epoch1000_batch0p7\weights\best.pt")
+# model = YOLO(r"D:\learn\cmputer_Vision_opencv\runs\segment\train_pretrained_pt_epoch10\weights\best.pt")
 
 
 print(model.names)

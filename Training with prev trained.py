@@ -13,7 +13,7 @@ def train_model():                          #checking if runnning on gpu
     # Load YOLOv8 segmentation model (you can use 'yolov8s-seg.pt', 'yolov8m-seg.pt', etc.)
 
     #model = YOLO("yolov8s-seg.yaml")
-    model = YOLO(rf"D:\learn\cmputer_Vision_opencv\runs\segment\train4_batch70%\weights\best.pt")
+    model = YOLO(rf"D:\learn\cmputer_Vision_opencv\runs\segment\train_yaml_epoch1000_batch0p7\weights\best.pt")
     image_path = rf"D:\learn\Dataset for animals\data.yaml"
     results = model.train(data=image_path, epochs=1000, batch=0.80,imgsz=640, device=0) #batch 80% ram usage , integer = no of images
 

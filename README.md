@@ -38,7 +38,7 @@ This keeps the workflow clear: data preparation and annotation quality checks ha
 ## Workflow summary across versions/methods
 
 - **Method A (Roboflow platform path):** AI annotation → manual correction/classification → Roboflow train/test → validated dataset export.
-- **Method B (Local code path):** Use exported dataset YAML in Ultralytics scripts for repeated training runs (`train`, `train2`, `train3`, `train4`, `train5`, `Final`) and compare metrics.
+- **Method B (Local code path):** Use exported dataset YAML in Ultralytics scripts for repeated training runs (`train_pretrained_pt_epoch10`, `train_yaml_epoch10_failed`, `train_yaml_epoch1000_batch16`, `train_yaml_epoch1000_batch0p7`, `train_from_train_yaml_epoch1000_batch0p7`, `train_final_yaml_epoch1000_batch0p7_v3`) and compare metrics.
 - **Prediction path:** Use trained checkpoints in image and video scripts to run direct class prediction on custom wildlife photos and videos.
 
 This project intentionally uses and compares two training/testing methods:
@@ -66,12 +66,12 @@ Both exports use train/val/test splits and the same 5 classes.
 ├─ Video_default.py
 ├─ new_video_custom.py
 ├─ runs/segment/
-│  ├─ train/
-│  ├─ train2_epochs=1000,dataset/
-│  ├─ train3/
-│  ├─ train4_batch70%/
-│  ├─ train5_using_prev_train4/
-│  └─ Final/
+│  ├─ train_pretrained_pt_epoch10/
+│  ├─ train_yaml_epoch10_failed/
+│  ├─ train_yaml_epoch1000_batch16/
+│  ├─ train_yaml_epoch1000_batch0p7/
+│  ├─ train_from_train_yaml_epoch1000_batch0p7/
+│  └─ train_final_yaml_epoch1000_batch0p7_v3/
 ├─ Images/
 └─ videos/
 ```
@@ -83,7 +83,7 @@ Both exports use train/val/test splits and the same 5 classes.
 	- Use this when you want a fresh experiment from model config.
 
 - [Training with prev trained.py](Training%20with%20prev%20trained.py#L1-L23)
-	- Starts from a previously trained checkpoint (`train4_batch70%/weights/best.pt`) and continues training.
+	- Starts from a previously trained checkpoint (`train_yaml_epoch1000_batch0p7/weights/best.pt`) and continues training.
 	- Use this for fine-tuning or continuation from a strong earlier run.
 
 - [custom_dataset___Detection.py](custom_dataset___Detection.py#L1-L25)
@@ -112,26 +112,25 @@ The following numbers are read directly from each run’s `results.csv` and `arg
 
 | Run folder | Setup difference | Best checkpoint summary (Mask metrics) |
 |---|---|---|
-| `train` | `model=yolov8s-seg.pt`, `epochs=10`, `batch=16`, dataset v2 | best epoch 10, mAP50-95(M)=0.64296, mAP50(M)=0.88085 |
-| `train2_epochs=1000,dataset` | `model=yolov8s-seg.yaml`, `epochs=10`, `batch=16`, dataset v2 | best epoch 9, mAP50-95(M)=0.00318, mAP50(M)=0.00939 (weak run; kept for comparison/history) |
-| `train3` | `model=yolov8s-seg.yaml`, `epochs=1000`, `batch=16`, dataset v2 | best epoch 409, mAP50-95(M)=0.64839, mAP50(M)=0.85690 |
-| `train4_batch70%` | `model=yolov8s-seg.yaml`, `epochs=1000`, `batch=0.7`, dataset v2 | best epoch 415, mAP50-95(M)=0.62594, mAP50(M)=0.81316 |
-| `train5_using_prev_train4` | starts from `train4_batch70%/weights/best.pt`, `epochs=1000`, `batch=0.8`, dataset v2 | best epoch 1, mAP50-95(M)=0.62140, mAP50(M)=0.82281 |
-| `Final` | `model=yolov8s-seg.yaml`, `epochs=1000`, `batch=0.7`, dataset v3 | best epoch 485, mAP50-95(M)=0.62845, mAP50(M)=0.79642 |
+| `train_pretrained_pt_epoch10` | `model=yolov8s-seg.pt`, `epochs=10`, `batch=16`, dataset v2 | best epoch 10, mAP50-95(M)=0.64296, mAP50(M)=0.88085 |
+| `train_yaml_epoch10_failed` | `model=yolov8s-seg.yaml`, `epochs=10`, `batch=16`, dataset v2 | best epoch 9, mAP50-95(M)=0.00318, mAP50(M)=0.00939 (weak run; kept for comparison/history) |
+| `train_yaml_epoch1000_batch16` | `model=yolov8s-seg.yaml`, `epochs=1000`, `batch=16`, dataset v2 | best epoch 409, mAP50-95(M)=0.64839, mAP50(M)=0.85690 |
+| `train_yaml_epoch1000_batch0p7` | `model=yolov8s-seg.yaml`, `epochs=1000`, `batch=0.7`, dataset v2 | best epoch 415, mAP50-95(M)=0.62594, mAP50(M)=0.81316 |
+| `train_from_train_yaml_epoch1000_batch0p7` | starts from `train_yaml_epoch1000_batch0p7/weights/best.pt`, `epochs=1000`, `batch=0.8`, dataset v2 | best epoch 1, mAP50-95(M)=0.62140, mAP50(M)=0.82281 |
+| `train_final_yaml_epoch1000_batch0p7_v3` | `model=yolov8s-seg.yaml`, `epochs=1000`, `batch=0.7`, dataset v3 | best epoch 485, mAP50-95(M)=0.62845, mAP50(M)=0.79642 |
 
 Run logs are available locally under `runs/segment/*/results.csv` and `runs/segment/*/args.yaml`.
 
-## 5) Suggested readable labels for runs (without renaming folders)
+## 5) Run naming convention used
 
-To avoid breaking hardcoded paths in scripts, folders are kept as-is.
-Use these labels in notes/presentations:
+Run folders are now named directly by training setup, so labels are built into the folder names:
 
-- `train` → **Baseline-10ep-pretrained-pt**
-- `train2_epochs=1000,dataset` → **Config-start-short-run-failed**
-- `train3` → **Long-run-config-start-best-overall**
-- `train4_batch70%` → **Long-run-auto-batch-0.7**
-- `train5_using_prev_train4` → **Finetune-from-train4**
-- `Final` → **Final-run-on-dataset-v3**
+- `train_pretrained_pt_epoch10`
+- `train_yaml_epoch10_failed`
+- `train_yaml_epoch1000_batch16`
+- `train_yaml_epoch1000_batch0p7`
+- `train_from_train_yaml_epoch1000_batch0p7`
+- `train_final_yaml_epoch1000_batch0p7_v3`
 
 ## 6) How to run locally
 
