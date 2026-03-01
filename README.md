@@ -170,7 +170,25 @@ Video inference:
 python video_detector.py
 ```
 
-## 7) Reusing this pipeline for other CV domains
+## 7) Demo results (image/video)
+
+These are sample media files used to validate real inference output in this project.
+
+**Video demos**
+
+- [videos/Wonderful Wildlife Encounter when Rhino and Zebra share a waterhole at Kruger National Park (online-video-cutter.com).mp4](videos/Wonderful%20Wildlife%20Encounter%20when%20Rhino%20and%20Zebra%20share%20a%20waterhole%20at%20Kruger%20National%20Park%20(online-video-cutter.com).mp4)
+- [videos/videoplayback.mp4](videos/videoplayback.mp4)
+- [videos/videoplayback_converted.mp4](videos/videoplayback_converted.mp4)
+
+**Image samples**
+
+- [Images/tiger.jpg](Images/tiger.jpg)
+- [Images/input_img.jpg](Images/input_img.jpg)
+- [Images/world-snake-day.webp](Images/world-snake-day.webp)
+
+Note: Large media in README can slow page loading, so direct links are used instead of auto-embedded playback.
+
+## 8) Reusing this pipeline for other CV domains
 
 This same workflow can be reused to build new CV projects in different fields:
 
