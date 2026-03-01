@@ -56,6 +56,8 @@ Both exports use train/val/test splits and the same 5 classes.
 
 ## 2) Project structure (important folders)
 
+This repository now includes code, trained runs, model weights, and datasets so it can be recreated directly after cloning.
+
 ```text
 .
 ├─ Training.py
@@ -72,6 +74,10 @@ Both exports use train/val/test splits and the same 5 classes.
 │  ├─ train_yaml_epoch1000_batch0p7/
 │  ├─ train_from_train_yaml_epoch1000_batch0p7/
 │  └─ train_final_yaml_epoch1000_batch0p7_v3/
+├─ datasets/
+│  ├─ Animal Project.v3i.yolov8/
+│  ├─ Dataset for animals/
+│  └─ animals training images/
 ├─ Images/
 └─ videos/
 ```
